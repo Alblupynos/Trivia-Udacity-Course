@@ -24,11 +24,13 @@ import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.android.navigation.databinding.FragmentGameWonBinding
 
 class GameWonFragment : Fragment() {
 
-    val args by lazy { GameWonFragmentArgs.fromBundle(arguments!!) }
+//    val args by lazy { GameWonFragmentArgs.fromBundle(arguments!!) }
+    val args by navArgs<GameWonFragmentArgs>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -46,7 +48,7 @@ class GameWonFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.winner_menu, menu)
-        if (null == getShareIntent().resolveActivity(activity!!.packageManager)){
+        if (getShareIntent().resolveActivity(activity!!.packageManager) == null){
             menu?.findItem(R.id.share)?.setVisible(false)
         }
     }
